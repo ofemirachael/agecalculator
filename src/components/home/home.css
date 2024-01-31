@@ -1,0 +1,20 @@
+.acard {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 20px 100px 20px;
+  background-color: hsl(0, 0%, 100%);
+  padding: 40px;
+}
+.formarea {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+.forminput {
+  width: 100px !important;
+  height: 50px !important;
+}
+
+input::placeholder {
+  font-weight: bold;
+}
