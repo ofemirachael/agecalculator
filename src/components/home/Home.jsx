@@ -51,6 +51,17 @@ const Home = () => {
                 </svg>
               </button>
             </div>
+            <div>
+              <p className="results">
+                <span className="rnum">- -</span> <span>Years</span>
+              </p>
+              <p className="results">
+                <span className="rnum">- -</span> <span>Months</span>
+              </p>
+              <p className="results">
+                <span className="rnum">- -</span> <span>Days</span>
+              </p>
+            </div>
           </div>
         </Col>
       </Row>
