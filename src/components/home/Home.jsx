@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import "./home.css";
+import { click } from "@testing-library/user-event/dist/click";
 
 const Home = () => {
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+
+  const handleSubmit = () => {
+    console.log("click");
+  };
   return (
     <Container>
       <Row>
@@ -38,14 +46,18 @@ const Home = () => {
             </Form>
             <div className="submitline">
               <hr />
-              <button type="button" class="submitbutton btn btn-primary">
+              <button
+                type="button"
+                className="submitbutton btn btn-primary"
+                onClick={handleSubmit}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="46"
                   height="44"
                   viewBox="0 0 46 44"
                 >
-                  <g fill="none" stroke="#FFF" stroke-width="2">
+                  <g fill="none" stroke="#FFF" strokeWidth="2">
                     <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
                   </g>
                 </svg>
