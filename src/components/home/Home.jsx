@@ -53,13 +53,13 @@ const Home = () => {
             </div>
             <div>
               <p className="results">
-                <span className="rnum">- -</span> <span>Years</span>
+                <span className="rnum">- -</span> <span>years</span>
               </p>
               <p className="results">
-                <span className="rnum">- -</span> <span>Months</span>
+                <span className="rnum">- -</span> <span>months</span>
               </p>
               <p className="results">
-                <span className="rnum">- -</span> <span>Days</span>
+                <span className="rnum">- -</span> <span>days</span>
               </p>
             </div>
           </div>
