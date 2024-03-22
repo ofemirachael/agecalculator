@@ -9,6 +9,11 @@ const Home = () => {
 
   const handleSubmit = () => {
     console.log(day);
+    handleauth();
+  };
+
+  const handleauth = () => {
+    console.log("I see you");
   };
   return (
     <Container>
