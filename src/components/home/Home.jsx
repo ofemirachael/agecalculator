@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import "./home.css";
-import { click } from "@testing-library/user-event/dist/click";
 
 const Home = () => {
   const [day, setDay] = useState("");
@@ -9,7 +8,7 @@ const Home = () => {
   const [year, setYear] = useState("");
 
   const handleSubmit = () => {
-    console.log("click");
+    console.log(day);
   };
   return (
     <Container>
@@ -21,25 +20,31 @@ const Home = () => {
                 <Form.Group className="mb-3" controlId="day">
                   <Form.Label className="applabel">Day</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     placeholder="DD"
                     className="forminput"
+                    value={day}
+                    onChange={(e) => setDay(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="day">
                   <Form.Label className="applabel">Month</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     placeholder="MM"
                     className="forminput"
+                    value={month}
+                    onChange={(e) => setMonth(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="day">
                   <Form.Label className="applabel">Year</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     placeholder="YYYY"
                     className="forminput"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
                   />
                 </Form.Group>
               </div>
