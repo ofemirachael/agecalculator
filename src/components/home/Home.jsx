@@ -33,15 +33,49 @@ const Home = () => {
     const dayErrorMessage = document.getElementById("dayerror");
     const monthErrorMessage = document.getElementById("montherror");
     const yearErrorMessage = document.getElementById("yearerror");
-    if (day < 1 || day > 31) {
-      dayErrorMessage.textContent = "Please enter a valid date";
+    let label = document.querySelectorAll(".applabel");
+    let formBox = document.querySelectorAll(".form-control");
+
+    if (day === "") {
+      dayErrorMessage.textContent = "This field is required";
+      label[0].style.color = "hsl(0, 100%, 67%)";
+      formBox[0].style.borderColor = "hsl(0, 100%, 67%)";
+    } else if (day < 1 || day > 31) {
+      dayErrorMessage.textContent = "Must be a valid day";
+      label[0].style.borderColor = "hsl(0, 100%, 67%)";
+      formBox[0].style.borderColor = "hsl(0, 100%, 67%)";
+    } else {
+      label[0].style.color = "hsl(0, 0%, 8%)";
+      formBox[0].style.borderColor = "hsl(0, 0%, 8%)";
+      dayErrorMessage.textContent = "";
     }
-    if (month < 1 || month > 12) {
-      monthErrorMessage.textContent = "Please enter a valid month";
+
+    if (month === "") {
+      monthErrorMessage.textContent = "This field is required";
+      label[1].style.color = "hsl(0, 100%, 67%)";
+      formBox[1].style.borderColor = "hsl(0, 100%, 67%)";
+    } else if (month < 1 || month > 12) {
+      monthErrorMessage.textContent = "Must be a valid month";
+      label[1].style.color = "hsl(0, 100%, 67%)";
+      formBox[1].style.borderColor = "hsl(0, 100%, 67%)";
+    } else {
+      label[1].style.color = "hsl(0, 0%, 8%)";
+      formBox[1].style.borderColor = "hsl(0, 0%, 8%)";
+      monthErrorMessage.textContent = "";
     }
-    if (year < 1582) {
-      yearErrorMessage.textContent =
-        " Please enter a valid gregorian calendar date";
+
+    if (year === "") {
+      yearErrorMessage.textContent = "This field is required";
+      label[2].style.color = "hsl(0, 100%, 67%)";
+      formBox[2].style.borderColor = "hsl(0, 100%, 67%)";
+    } else if (year > new Date().getFullYear()) {
+      yearErrorMessage.textContent = "Must be in the past";
+      label[2].style.color = "hsl(0, 100%, 67%)";
+      formBox[2].style.borderColor = "hsl(0, 100%, 67%)";
+    } else {
+      label[2].style.color = "hsl(0, 0%, 8%)";
+      formBox[2].style.borderColor = "hsl(0, 0%, 8%)";
+      yearErrorMessage.textContent = "";
     }
   };
 
