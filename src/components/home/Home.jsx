@@ -3,18 +3,48 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import "./home.css";
 
 const Home = () => {
+  const [btncolor, setBtncolor] = useState("hsl(0, 0%, 8%)");
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
 
   const handleSubmit = () => {
-    console.log(day);
     handleauth();
+
+    calcDate();
   };
 
-  const handleauth = () => {
-    console.log("I see you");
+  const calcDate = () => {
+    setBtncolor("hsl(259, 100%, 65%)");
+    let realYear = document.getElementById("realyear");
+    let realMonth = document.getElementById("realmonth");
+    let realDay = document.getElementById("realday");
+    let currDay = new Date().getDay();
+    let currMonth = new Date().getMonth() + 1;
+    let currYear = new Date().getFullYear();
+    let calcyear = currYear - year;
+    let calcmonth = Math.abs(currMonth - month);
+    let calcday = Math.abs(currDay - day);
+    realYear.textContent = calcyear;
+    realMonth.textContent = calcmonth;
+    realDay.textContent = calcday;
   };
+  const handleauth = () => {
+    const dayErrorMessage = document.getElementById("dayerror");
+    const monthErrorMessage = document.getElementById("montherror");
+    const yearErrorMessage = document.getElementById("yearerror");
+    if (day < 1 || day > 31) {
+      dayErrorMessage.textContent = "Please enter a valid date";
+    }
+    if (month < 1 || month > 12) {
+      monthErrorMessage.textContent = "Please enter a valid month";
+    }
+    if (year < 1582) {
+      yearErrorMessage.textContent =
+        " Please enter a valid gregorian calendar date";
+    }
+  };
+
   return (
     <Container>
       <Row>
@@ -25,39 +55,48 @@ const Home = () => {
                 <Form.Group className="mb-3" controlId="day">
                   <Form.Label className="applabel">Day</Form.Label>
                   <Form.Control
-                    type="number"
+                    type="text"
                     placeholder="DD"
                     className="forminput"
                     value={day}
                     onChange={(e) => setDay(e.target.value)}
+                    pattern="[0-9]"
+                    maxLength={2}
                   />
+                  <p id="dayerror"></p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="day">
                   <Form.Label className="applabel">Month</Form.Label>
                   <Form.Control
-                    type="number"
+                    type="text"
                     placeholder="MM"
                     className="forminput"
                     value={month}
+                    maxLength={2}
                     onChange={(e) => setMonth(e.target.value)}
                   />
+                  <p id="montherror"></p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="day">
                   <Form.Label className="applabel">Year</Form.Label>
                   <Form.Control
-                    type="number"
+                    type="text"
                     placeholder="YYYY"
                     className="forminput"
                     value={year}
+                    maxLength={4}
                     onChange={(e) => setYear(e.target.value)}
                   />
+                  <p id="yearerror"></p>
                 </Form.Group>
               </div>
             </Form>
+
             <div className="submitline">
               <hr />
               <button
                 type="button"
+                style={{ backgroundColor: btncolor }}
                 className="submitbutton btn btn-primary"
                 onClick={handleSubmit}
               >
@@ -75,13 +114,22 @@ const Home = () => {
             </div>
             <div>
               <p className="results">
-                <span className="rnum">- -</span> <span>years</span>
+                <span className="rnum" id="realyear">
+                  - -
+                </span>{" "}
+                <span>years</span>
               </p>
               <p className="results">
-                <span className="rnum">- -</span> <span>months</span>
+                <span className="rnum" id="realmonth">
+                  - -
+                </span>{" "}
+                <span>months</span>
               </p>
               <p className="results">
-                <span className="rnum">- -</span> <span>days</span>
+                <span className="rnum" id="realday">
+                  - -
+                </span>{" "}
+                <span>days</span>
               </p>
             </div>
           </div>
