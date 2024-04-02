@@ -3,19 +3,29 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import "./home.css";
 
 const Home = () => {
-  const [btncolor, setBtncolor] = useState("hsl(0, 0%, 8%)");
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
 
   const handleSubmit = () => {
     handleauth();
-
-    calcDate();
+    if (
+      day === "" ||
+      month === "" ||
+      year === "" ||
+      day < 1 ||
+      day > 31 ||
+      month < 1 ||
+      month > 12 ||
+      year > new Date().getFullYear()
+    ) {
+      return false;
+    } else {
+      calcDate();
+    }
   };
 
   const calcDate = () => {
-    setBtncolor("hsl(259, 100%, 65%)");
     let realYear = document.getElementById("realyear");
     let realMonth = document.getElementById("realmonth");
     let realDay = document.getElementById("realday");
@@ -29,6 +39,13 @@ const Home = () => {
     realMonth.textContent = calcmonth;
     realDay.textContent = calcday;
   };
+
+  const res = (id, labelnum, formboxnum, message, errorcolor) => {
+    id.textContent = message;
+    labelnum.style.color = errorcolor;
+    formboxnum.style.borderColor = errorcolor;
+  };
+
   const handleauth = () => {
     const dayErrorMessage = document.getElementById("dayerror");
     const monthErrorMessage = document.getElementById("montherror");
@@ -37,45 +54,63 @@ const Home = () => {
     let formBox = document.querySelectorAll(".form-control");
 
     if (day === "") {
-      dayErrorMessage.textContent = "This field is required";
-      label[0].style.color = "hsl(0, 100%, 67%)";
-      formBox[0].style.borderColor = "hsl(0, 100%, 67%)";
+      res(
+        dayErrorMessage,
+        label[0],
+        formBox[0],
+        "This field is required",
+        "hsl(0, 100%, 67%)"
+      );
     } else if (day < 1 || day > 31) {
-      dayErrorMessage.textContent = "Must be a valid day";
-      label[0].style.borderColor = "hsl(0, 100%, 67%)";
-      formBox[0].style.borderColor = "hsl(0, 100%, 67%)";
+      res(
+        dayErrorMessage,
+        label[0],
+        formBox[0],
+        "Must be a valid day",
+        "hsl(0, 100%, 67%)"
+      );
     } else {
-      label[0].style.color = "hsl(0, 0%, 8%)";
-      formBox[0].style.borderColor = "hsl(0, 0%, 8%)";
-      dayErrorMessage.textContent = "";
+      res(dayErrorMessage, label[0], formBox[0], "", "hsl(0, 0%, 8%)");
     }
 
     if (month === "") {
-      monthErrorMessage.textContent = "This field is required";
-      label[1].style.color = "hsl(0, 100%, 67%)";
-      formBox[1].style.borderColor = "hsl(0, 100%, 67%)";
+      res(
+        monthErrorMessage,
+        label[1],
+        formBox[1],
+        "This field is required",
+        "hsl(0, 100%, 67%)"
+      );
     } else if (month < 1 || month > 12) {
-      monthErrorMessage.textContent = "Must be a valid month";
-      label[1].style.color = "hsl(0, 100%, 67%)";
-      formBox[1].style.borderColor = "hsl(0, 100%, 67%)";
+      res(
+        monthErrorMessage,
+        label[1],
+        formBox[1],
+        "Must be a valid month",
+        "hsl(0, 100%, 67%)"
+      );
     } else {
-      label[1].style.color = "hsl(0, 0%, 8%)";
-      formBox[1].style.borderColor = "hsl(0, 0%, 8%)";
-      monthErrorMessage.textContent = "";
+      res(monthErrorMessage, label[1], formBox[1], "", "hsl(0, 0%, 8%)");
     }
 
     if (year === "") {
-      yearErrorMessage.textContent = "This field is required";
-      label[2].style.color = "hsl(0, 100%, 67%)";
-      formBox[2].style.borderColor = "hsl(0, 100%, 67%)";
+      res(
+        yearErrorMessage,
+        label[2],
+        formBox[2],
+        "This field is required",
+        "hsl(0, 100%, 67%)"
+      );
     } else if (year > new Date().getFullYear()) {
-      yearErrorMessage.textContent = "Must be in the past";
-      label[2].style.color = "hsl(0, 100%, 67%)";
-      formBox[2].style.borderColor = "hsl(0, 100%, 67%)";
+      res(
+        yearErrorMessage,
+        label[2],
+        formBox[2],
+        "Must be in the past",
+        "hsl(0, 100%, 67%)"
+      );
     } else {
-      label[2].style.color = "hsl(0, 0%, 8%)";
-      formBox[2].style.borderColor = "hsl(0, 0%, 8%)";
-      yearErrorMessage.textContent = "";
+      res(yearErrorMessage, label[2], formBox[2], "", "hsl(0, 0%, 8%)");
     }
   };
 
@@ -130,7 +165,6 @@ const Home = () => {
               <hr />
               <button
                 type="button"
-                style={{ backgroundColor: btncolor }}
                 className="submitbutton btn btn-primary"
                 onClick={handleSubmit}
               >

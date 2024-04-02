@@ -47,8 +47,12 @@ hr {
   width: 60px;
   border-radius: 50px !important;
   border: none !important;
+  background-color: hsl(259, 100%, 65%) !important;
 }
 
+.submitbutton:hover {
+  background-color: hsl(0, 0%, 8%) !important;
+}
 svg {
   width: 100%;
 }
