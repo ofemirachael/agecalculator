@@ -117,7 +117,7 @@ const Home = () => {
   return (
     <Container>
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col lg={{ span: 6, offset: 3 }} md={{ span: 10, offset: 1 }}>
           <div className="acard">
             <Form>
               <div className="formarea">
