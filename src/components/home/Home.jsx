@@ -121,7 +121,7 @@ const Home = () => {
           <div className="acard">
             <Form>
               <div className="formarea">
-                <Form.Group className="mb-3" controlId="day">
+                <Form.Group className="mb-3">
                   <Form.Label className="applabel">Day</Form.Label>
                   <Form.Control
                     type="text"
@@ -134,7 +134,7 @@ const Home = () => {
                   />
                   <p id="dayerror"></p>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="day">
+                <Form.Group className="mb-3">
                   <Form.Label className="applabel">Month</Form.Label>
                   <Form.Control
                     type="text"
@@ -146,7 +146,7 @@ const Home = () => {
                   />
                   <p id="montherror"></p>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="day">
+                <Form.Group className="mb-3">
                   <Form.Label className="applabel">Year</Form.Label>
                   <Form.Control
                     type="text"
